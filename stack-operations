@@ -7,7 +7,7 @@ function initStackDir(){
     #echo created $stackdir >&2
 }
 
-function addArrayToStack(){
+function addEntriesToStack(){
     count=0
 
     for arg in "$@"

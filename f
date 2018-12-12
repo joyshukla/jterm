@@ -66,7 +66,7 @@ out=$(runCommand $searchStr)
 # no processing required for find since there are no line numbers
 
 # add entries to the stack specific for this pane
-addArrayToStack $out
+addEntriesToStack $out
 
 #echo $colorGrepStr
 

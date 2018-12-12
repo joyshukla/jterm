@@ -67,7 +67,7 @@ out=$(runCommand $searchStr)
 pOut=$(echo "$out" | cut -d ':' -f 1,2 | sed -e 's/:/+/')
 
 # add entries to the stack specific for this pane
-addArrayToStack $pOut
+addEntriesToStack $pOut
 
 #echo $colorGrepStr
 
