@@ -69,7 +69,10 @@ out=$(runCommand $searchStr)
 addArrayToStack $out
 
 #echo $colorGrepStr
-#echo "$out" | nl -w 3 | less -EX
+
+# NOTE: grep --color does not work with multiple strings i.e. \| symbol
+# so first trying to print with color, if it fails, print normally
+
 echo "$out" | nl -w 3 | less -EX | grep --color -i -E $colorGrepStr
 
 if [ $? -ne 0 ]
