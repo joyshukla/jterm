@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. jterm-bash-base-functions
+. stack-operations
 
 function createSearchString(){
 	# function to create search string from multiple arguments
