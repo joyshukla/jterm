@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+OS_ID=$(uname)
+
+#echo "$OS_ID"
 . stack-operations
 
 function createSearchString(){
@@ -14,8 +17,13 @@ function createSearchString(){
             searchStr=$arg
             flag=1
         else
-            #searchStr="\($searchStr\|$arg\)"   # ubuntu
-            searchStr="($searchStr|$arg)"         # os x
+            if [[ "$OS_ID" == 'Linux' ]]           # tested on ubuntu
+            then
+                searchStr="\($searchStr\|$arg\)"
+            elif [[ "$OS_ID" == 'Darwin' ]]        # tested on macos
+            then
+                searchStr="($searchStr|$arg)"
+            fi
     fi
 	done
     echo $searchStr
@@ -42,8 +50,14 @@ function createColorGrepString(){
 function runCommand(){
     # function to run command
     searchStr=$@
-    #cmd="find . -iregex ^.*$searchStr.*"        # ubuntu
-    cmd="find -E . -iregex ^.*$searchStr.*"
+
+    if [[ "$OS_ID" == 'Linux' ]]                   # tested on ubuntu
+    then
+        cmd="find . -iregex ^.*$searchStr.*"
+    elif [[ "$OS_ID" == 'Darwin' ]]                # tested on macos
+    then    
+        cmd="find -E . -iregex ^.*$searchStr.*"
+    fi
 
     # to echo command to stderr, uncomment below line
     #echo $cmd >&2
