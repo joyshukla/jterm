@@ -33,9 +33,26 @@ then
 
     for fileNum in $(seq $st $en)
     do
+        # pause after 5 files
+        offset=$(($fileNum - $st))
+        if [[ $(($offset % 5)) == 0 ]] && [[ $fileNum != $st ]] 
+        then
+            echo -n 'Press any key to continue and "q" to quit : '
+            read -n1 ans
+            if [[ $ans == 'q' ]] || [[ $ans == 'Q' ]]
+            then
+                echo
+                echo 'exiting'
+                exit -1                 
+            fi
+        fi
+        
         #echo $fileNum
+
+        # edit one file
         editOneFile $fileNum
     done
 else
+    # no range exist, opening single file
     editOneFile $1
 fi
