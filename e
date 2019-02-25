@@ -22,4 +22,20 @@ function editOneFile(){
     fi
 }
 
-editOneFile $1
+if [[ $1 == *"-"* ]]
+then
+    fileRange=($(echo "$1" | tr '-' '\n'))
+    st=${fileRange[0]}
+    en=${fileRange[1]}
+   
+    #echo $st
+    #echo $en
+
+    for fileNum in $(seq $st $en)
+    do
+        #echo $fileNum
+        editOneFile $fileNum
+    done
+else
+    editOneFile $1
+fi
