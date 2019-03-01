@@ -89,7 +89,7 @@ addEntriesToStack $pOut
 # NOTE: grep --color does not work with multiple strings i.e. \| symbol
 # so first trying to print with color, if it fails, print normally
 
-echo "$out" | nl -w 3 | less -EX | grep --color -i -E $colorGrepStr
+echo "$out" | nl -w 3 | grep --color=always -i -E $colorGrepStr | less -EXR
 
 if [ $? -ne 0 ]
 then
