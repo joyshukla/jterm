@@ -2,8 +2,10 @@
 
 tools to easily find files and search recursively.
 
-# INSTALLATION Instruction
+## Installation Instruction
 
+```sh
 git clone https://github.com/joyshukla/jterm
 
 ./install.sh
+```
